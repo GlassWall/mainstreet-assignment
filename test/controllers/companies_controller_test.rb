@@ -52,7 +52,7 @@ class CompaniesControllerTest < ApplicationSystemTestCase
       click_button "Update Company"
     end
 
-    assert_text "Only @getmainstree.com emails allowed"
+    assert_text "Email should end with @getmainstreet.com"
 
     @company.reload
     assert_not_equal "Updated Test Company", @company.name
@@ -87,7 +87,7 @@ class CompaniesControllerTest < ApplicationSystemTestCase
       fill_in("company_email", with: "new_test_company@random.com")
       click_button "Create Company"
     end
-    assert_text "Only @getmainstree.com emails allowed"
+    assert_text "Email should end with @getmainstreet.com"
     last_company = Company.last
     assert_not_equal "New Test Company", last_company.name
     assert_not_equal "28173", last_company.zip_code
