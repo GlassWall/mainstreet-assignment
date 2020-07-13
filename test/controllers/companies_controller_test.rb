@@ -1,6 +1,6 @@
 require "test_helper"
 require "application_system_test_case"
-
+require 'minitest/byebug' if ENV['DEBUG']
 class CompaniesControllerTest < ApplicationSystemTestCase
 
   def setup
@@ -13,6 +13,7 @@ class CompaniesControllerTest < ApplicationSystemTestCase
     assert_text "Companies"
     assert_text "Hometown Painting"
     assert_text "Wolf Painting"
+    assert_text "Delete"
   end
 
   test "Show" do
@@ -58,4 +59,12 @@ class CompaniesControllerTest < ApplicationSystemTestCase
     assert_equal "28173", last_company.zip_code
   end
 
+  test "Delete" do
+    visit companies_path
+    assert_equal(Company.count,6)
+    first('.del').click
+    page.driver.browser.switch_to.alert.accept
+    sleep(1)
+    assert_equal(Company.count, 5)
+  end
 end

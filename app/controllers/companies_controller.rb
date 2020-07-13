@@ -12,6 +12,11 @@ class CompaniesController < ApplicationController
   def show
   end
 
+  def destroy
+    @company.delete
+    redirect_to action: "index"
+  end
+
   def create
     @company = Company.new(company_params)
     if @company.save
