@@ -22,6 +22,7 @@ class CompaniesController < ApplicationController
     if @company.save
       redirect_to companies_path, notice: "Saved"
     else
+      flash[:alert] = @company.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -33,6 +34,7 @@ class CompaniesController < ApplicationController
     if @company.update(company_params)
       redirect_to companies_path, notice: "Changes Saved"
     else
+      flash[:alert] = @company.errors.full_messages.join(", ")
       render :edit
     end
   end  
