@@ -1,4 +1,4 @@
 class Company < ApplicationRecord
-  validates :email, format: { with: /[a-z0-9](\.?[a-z0-9]){5,}@getmainstreet\.com/, message: "Only @getmainstree.com emails allowed" }, allow_blank: true
+  validates :email, format: { with: /(\A([a-z]*\s*)*\<*([^@\s]+)@getmainstreet.com\>*\Z)/, message: "should end with @getmainstreet.com" }, allow_blank: true
   has_rich_text :description
 end
