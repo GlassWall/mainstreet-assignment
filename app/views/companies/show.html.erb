@@ -11,14 +11,14 @@
   <div class="bg-success">
     <div class="container p-5 text-white">
       <h1><%= @company.name %></h1>
-      <h3>City, State</h3>
-      <pre>☝️ This is what needs to be udpated. Examples: Atlanta, GA or Nashvile, TN</pre>
+      <%= zip_hash = ZipCodes.identify(@company.zip_code) %>
+      <h3><%=zip_hash&.[](:city)%>, <%=zip_hash&.[](:state_name)%></h3>
     </div>
   </div>
   <% if @company.description.present? %>
-    <div class="bg-light p-5">
-      <%= @company.description %>
-    </div>
+  <div class="bg-light p-5">
+    <%= @company.description %>
+  </div>
   <% end %>
   <div class="bg-success text-white text-center py-3">
     <p class="lead"><%= @company.phone %> — <%= @company.email %></p>
