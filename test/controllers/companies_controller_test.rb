@@ -22,8 +22,7 @@ class CompaniesControllerTest < ApplicationSystemTestCase
     assert_text @company.name
     assert_text @company.phone
     assert_text @company.email
-    zip_hash = ZipCodes.identify(@company.zip_code)
-    assert_text "#{zip_hash&.[](:city)}, #{zip_hash&.[](:state_name)}"
+    assert_text "Ventura, California"
   end
 
   test "Update" do
